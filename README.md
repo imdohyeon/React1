@@ -9,7 +9,7 @@
 
 ## 1️. 삼항 연산자
 
-- **기본 문법:** `isPacked ? true : false`
+- **기본 문법:** `{isPacked ? true : false}`
 - `Items` 컴포넌트에서 부모 컴포넌트에 전달받은 데이터 꾸러미(`name`)를 보여줌
 - `isPacked`가 `true`일 경우 `☑️`를 나타내고, `false`이면 아무것도 표현하지 않음
 - `isPacked = {0}`일 경우에는 자바스크립트에서 0이 거짓으로 평가되지만 반환값 자체가 0이 되므로 화면에 0이 출력됨
@@ -22,7 +22,7 @@
 
 ```jsx
 
-// 자식 컴포넌트 (Items)
+// 자식 컴포넌트 (Items.tsx)
 export function Items({ name, isPacked }) {
   return (
     <li>
@@ -31,7 +31,7 @@ export function Items({ name, isPacked }) {
   );
 }
 
-// 부모 컴포넌트 (PackingList)
+// 부모 컴포넌트 (PackingList.tsx)
 export default function PackingList() {
   return (
     <>
@@ -48,7 +48,7 @@ export default function PackingList() {
 }
 
 
-// 자식 컴포넌트 (Items)
+// 자식 컴포넌트 (Items.tsx)
 export function Items({ name, isPacked }) {
   let itemContent = name;
   
@@ -64,7 +64,7 @@ export function Items({ name, isPacked }) {
 }
 
 
-// 부모 컴포넌트 (PackingList)
+// 부모 컴포넌트 (PackingList.tsx)
 export default function PackingList() {
   return (
     <section>
