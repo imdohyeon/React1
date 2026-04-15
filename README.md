@@ -32,7 +32,7 @@
 
 ---
 
-### 관련 코드
+### ▶ 관련 코드
 ```jsx
 // HerosData.jsx
 
@@ -41,13 +41,34 @@ export const heroes = [
 {id: 1, casting: '아이언맨', name: '토니 스타크', power: 5},
 {id: 2, casting: '배트맨', name: '브루스 웨인', power: 3},
 {id: 3, casting: '슈퍼맨', name: '클라크 켄트', power: 1},
-{id: 4, casting: '헐크', name: '로버트 브루스 배너', power: 2}
-];
+{id: 4, casting: '헐크', name: '로버트 브루스 배너', power: 2}];
+
+// MovieHeros.jsx
+
+import {heroes} from "./HerosData";
+
+export default function MovieHeroes() {
+    const filterTests = heroes.filter(hero =>
+        hero.power === 5
+    );
+    const listHeroes = filterTests.map(hero =>
+        <li key = {hero.id}>
+            <p> {hero.name}의 배역은 {hero.casting} 입니다 </p>
+            {/* <p> {hero.casting}의 파워는 {hero.power} 입니다</p> */}
+        </li>
+    );
+        return (
+        <section>
+        <h1>영화 속 영웅들</h1>
+        <ul>{listHeroes}</ul>
+        </section>
+    );
+}
 ```
 
 ## 2. 순수 함수
-같은 입력값을 넣으면 항상 같은 결과를 반환하는 함수 <br>
-외부의 상태를 변경하지 않는(사이드 이펙트가 없는) 함수
+(1) 같은 입력값을 넣으면 항상 같은 결과를 반환하는 함수 <br>
+(2) 외부의 상태를 변경하지 않는(사이드 이펙트가 없는) 함수
 
 ---
 
@@ -55,6 +76,12 @@ export const heroes = [
 - 규모가 점점 커지더라도 예상 밖의 동작이나 버그를 피할 수 있음
 - 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
 - 같은 입력이 주어졌다면 같은 결과를 반환함
+
+---
+
+## 2-1. 특징
+- 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
+- 같은 입력이 주어졌다면 같은 결과값을 변환함
 
 ---
 
@@ -77,7 +104,7 @@ export const heroes = [
 
 ---
 
-### 해당 코드
+### ▶ 관련 코드
 
 ```jsx
 
