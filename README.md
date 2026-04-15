@@ -32,6 +32,18 @@
 
 ---
 
+### 관련 코드
+```jsx
+// HerosData.jsx
+
+export const heroes = [
+{id: 0, casting: '스파이더맨', name: '피터 파커', power: 4},
+{id: 1, casting: '아이언맨', name: '토니 스타크', power: 5},
+{id: 2, casting: '배트맨', name: '브루스 웨인', power: 3},
+{id: 3, casting: '슈퍼맨', name: '클라크 켄트', power: 1},
+{id: 4, casting: '헐크', name: '로버트 브루스 배너', power: 2}
+];
+```
 
 ## 2. 순수 함수
 같은 입력값을 넣으면 항상 같은 결과를 반환하는 함수 <br>
@@ -44,7 +56,6 @@
 - 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
 - 같은 입력이 주어졌다면 같은 결과를 반환함
 
-  
 ---
 
 ## 4월 08일 (6주차)
@@ -66,7 +77,7 @@
 
 ---
 
-### 전체 코드
+### 해당 코드
 
 ```jsx
 
@@ -125,3 +136,4 @@ export default function PackingList() {
     </section>
   );
 }
+```
