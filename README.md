@@ -67,8 +67,8 @@ export default function MovieHeroes() {
 ```
 
 ## 2. 순수 함수
-(1) 같은 입력값을 넣으면 항상 같은 결과를 반환하는 함수 <br>
-(2) 외부의 상태를 변경하지 않는(사이드 이펙트가 없는) 함수
+1) 같은 입력값을 넣으면 항상 같은 결과를 반환하는 함수 <br>
+2) 외부의 상태를 변경하지 않는(사이드 이펙트가 없는) 함수
 
 ---
 
@@ -78,12 +78,112 @@ export default function MovieHeroes() {
 - 같은 입력이 주어졌다면 같은 결과를 반환함
 
 ---
+### ▶ 관련 코드
+```jsx
+// OrderUp.jsx
+export default function OrderUp ({order}) {
+    return (
+        <section>
+            <p> 치즈버거 {order}개 / 콜라 {order}개  + (이벤트) 프렌치 프라이 {2 * order}개 </p>
+        </section>
+    )
+}
 
+// Kiosk.jsx
+import OrderUp from "./OrderUp";
+export default function Kiosk() {
+    return (
+        <section>
+        <h2>치즈버거 세트 메뉴를 주문하세요</h2>
+        <p>일반 세트 : </p>
+        <OrderUp order = {1} />
+
+        <p> 패밀리 세트 : </p>
+        <OrderUp order = {2} />
+        <h2> 이용해 주셔서 감사합니다 </h2>
+        </section>
+    );
+}
+
+```
 ## 2-1. 특징
 - 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
 - 같은 입력이 주어졌다면 같은 결과값을 변환함
 
 ---
+## 2-2. 지역 변경
+- 외부에 있는 기존 변수를 렌더링 중에 변경함 (의도하지 않은 사이드 이펙트)
+- 함수 스코프 외부의 변수나 호출 전에 생성된 객체를 변경하지 않음
+- 렌더링 하는 동안에 생성된 변수와 객체를 변경하는 것은 문제가 되지 않음
+
+---
+### ▶ 관련 코드
+```jsx
+// TeaSet.tsx
+
+/* 의도하지 않은 사이드 이펙트 */
+
+let guest = 0;
+function Cup() {
+    // 컴포넌트 외부의 guest 변수를 변경
+    guest = guest + 1;
+    return <h2>Tea cup for guest #{guest}</h2>;
+}
+
+ export default function TeaSet() {
+    return (
+        <>
+            <Cup/>
+            <Cup />
+            <Cup />
+        </>
+     );
+ }
+
+/* 올바른 예시 (1) */
+
+ function Cup({guest}) {
+     return <h2>Tea cup for guest #{guest}</h2>;
+ }
+
+ export default function TeaSet() {
+     return (
+         <>
+            <Cup guest = {1}/>
+            <Cup guest = {2}/>
+            <Cup guest = {3}/>
+         </>
+      );
+  }
+
+/* 올바른 예시 (2) */
+
+function Cup({guest}) {
+    return <h2>Tea cup for guest #{guest}</h2>;
+}
+
+export default function TeaSet() {
+  const cups = [];
+  for (let i = 1; i <= 12; i++) {
+    cups.push(<Cup key={i} guest={i} />);
+  }
+
+  return (
+    <>
+      {cups}
+    </>
+  );
+}
+
+```
+
+
+
+
+
+
+
+
 
 ## 4월 08일 (6주차)
 
