@@ -1,5 +1,128 @@
 # 202230120 왕도현
 
+## 04월 29일 (9주차)
+
+## 1. JSX에 스타일 적용하기
+
+## 1-1. 방법
+- 일반 CSS, 인라인 스타일, CSS-in-JS, CSS 프레임워크, CSS Module
+- React에서 권장하는 방법: CSS Module
+
+---
+
+## 1-2. 일반 CSS
+- HTML에서 CSS를 사용하는 방법과 동일함
+- ```style.css``` 파일을 만들어서 정의하고 컴포넌트에서 ```import```한 후 사용함
+- 속성명의 이름으로 ```className```을 사용함
+- 프로젝트에 빠르게 적용할 수 있음
+- 컴포넌트 단위로 관리하기 어렵고, 전역 스코프(global)의 클래스 이름과 충돌 가능성이 있으므로 주의해야 함
+
+---
+
+## 1-3 인라인 스타일
+- 유지 보수의 어려움이 있음
+- 조건부 스타일에서만 (제한적으로) 사용함
+- 속성 이름은 camelCase를 사용함
+
+---
+
+## 1-4 CSS-in-JS
+- 자바스크립트 코드 내에서 직접 작성하여 컴포넌트 단위로 스타일을 관리함
+- styled-components, emotion, JSS 등
+- 장점: 관리와 유지보수 용이, prop를 기반으로 동적(조건부) 스타일 적용에 편리, 클래스명을 자동으로 생성하여 충돌 방지, provider 컴포넌트 전달
+- 단점: 런타임 속도가 느려짐 등
+
+---
+
+## 1-5. CSS 프레임워크
+- Tailwind CSS (클래스), Bootstrap (컴포넌트), bulma 등
+- Tailwind CSS: 클래스를 조합하여 스타일을 적용함
+- 빠른 개발과 일관성을 유지할 수 있음
+- 클래스의 선언이 길어지기 때문에 문서의 가독성이 떨어짐
+
+---
+
+## 1-6. CSS Module
+- 클래스명을 ```_[클래스 이름]-[해쉬값]```의 형태로 자동 변환함
+- 고유한 이름의 로컬 스코프를 제공하는 기술
+- 컴포넌트 기반의 프레임워크인 React나 vue 등에서 채택 → 충돌 방지, 유지보수 유리
+- 컴포넌트 단위로 스타일링 및 재사용 유리
+- 빌드 시 고유한 이름으로 변경되기 때문에 충돌의 위험이 없음 (* css: 전역으로 선언, 다른 컴포넌트와 충돌의 위험이 있음)
+
+---
+
+## (1) 규칙
+- 파일 이름: ```[컴포넌트 이름].module.css```
+- 확장명: ```.module.css```
+- 내용은 일반 CSS의 작성법을 사용하고 class 선택자로 스타일을 선언함
+- Tag 선택자를 사용하는 것은 특별한 경우가 아니라면 권장하지 않음
+- Tag 선택자는 CSS Module 빌드 시에 고유한 이름을 할당 받지 않고, 전역으로 사용함
+- class 선택자: camalCase
+  
+---
+
+## (2) 클래스 적용 방법
+- Import의 변수명은 style을 사용함
+- JSX에서는 class 키워드 대신 className을 사용함
+- class 이름은 객체를 사용할 때처럼 [변수명].[클래스명]의 형태로 작성함
+- class 이름 전체를 중괄호로 감쌈
+
+---
+
+## (3) 관리 방법 
+- 컴포넌트 단위로 css를 작성하여 재사용이 가능함
+- 컴포넌트와 같은 디렉토리에 저장하여 관리함 → 일반적으로 사용
+
+---
+### ▶ 관련 코드
+
+```jsx
+// ButtonCom.jsx
+
+import style from "./ButtonCom.module.css"
+
+export default function ButtonCom() {
+    return (
+        <>
+            <h1 className = {style.title}>Button 컴포넌트</h1>
+            <nav className = {style.navBar}>
+                <button className = {style.myButton}>버튼 1</button>
+                <button className = {style.myButton}>버튼 2</button>
+        </>
+    )
+}
+```
+
+
+```css
+
+.title {
+    color: blue;
+}
+
+.navBar {
+    padding: 15px;
+    background-color: gray;
+}
+
+button {
+    margin-right: 10px;
+}
+```
+
+## 2. 이벤트와 상호 작용
+- 사용자의 입력에 반응해서 업데이트가 되는 요소
+
+
+
+
+
+
+
+
+
+
+
 ## 04월 15일 (7주차)
 
 ## 1. 리스트 렌더링
