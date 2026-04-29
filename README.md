@@ -113,15 +113,37 @@ button {
 ## 2. 이벤트와 상호 작용
 - 사용자의 입력에 반응해서 업데이트가 되는 요소
 
+## 2-1. 이벤트 응답
+- JSX에 이벤트 핸들러 추가
+- 클릭, 마우스 호버(hover), 폼 입력의 포커스 등 사용자와의 상호작용에 따라 유발되는 사용자 정의 함수
+- ```<button>```과 같은 내장 컴포넌트는 onClick과 같은 내장 브라우저 이벤트를 지원함
+- 사용자 정의 컴포넌트의 경우, 핸들러 속성에 원하는 애플리케이션 이름을 지정할 수 있음
 
+---
 
+### 관련 코드
 
+```jsx
+// ButtonCom.jsx
 
+import style from "./ButtonCom.module.css"
 
+export default function ButtonCom() {
 
+function handleClick() {
+    alert("버튼 클릭")
+}
+    return (
+        <>
+            <h1 className = {style.title}>Button 컴포넌트</h1>
+            <nav className = {style.navBar}>
+                <button onClick = {handleClick} className = {style.myButton}>버튼1</button>
+                <button onClick = {handleClick} className = {style.myButton}>버튼2</button>
+        </>
+    )
+}
 
-
-
+```
 
 ## 04월 15일 (7주차)
 
