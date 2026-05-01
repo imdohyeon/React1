@@ -195,8 +195,8 @@ export default function MovieHeroes() {
     );
     const listHeroes = filterTests.map(hero =>
         <li key = {hero.id}>
-            <p> {hero.name}의 배역은 {hero.casting} 입니다 </p>
-            {/* <p> {hero.casting}의 파워는 {hero.power} 입니다</p> */}
+            <p>{hero.name}의 배역은 {hero.casting} 입니다</p>
+            {/* <p>{hero.casting}의 파워는 {hero.power} 입니다</p> */}
         </li>
     );
         return (
@@ -228,7 +228,7 @@ export default function MovieHeroes() {
 export default function OrderUp ({order}) {
     return (
         <section>
-            <p> 치즈버거 {order}개 / 콜라 {order}개  + (이벤트) 프렌치 프라이 {2 * order}개 </p>
+            <p>치즈버거 {order}개 / 콜라 {order}개  + (이벤트) 프렌치 프라이 {2 * order}개</p>
         </section>
     )
 }
@@ -239,12 +239,12 @@ export default function Kiosk() {
     return (
         <section>
         <h2>치즈버거 세트 메뉴를 주문하세요</h2>
-        <p>일반 세트 : </p>
+        <p>일반 세트 :</p>
         <OrderUp order = {1} />
 
-        <p> 패밀리 세트 : </p>
+        <p>패밀리 세트 :</p>
         <OrderUp order = {2} />
-        <h2> 이용해 주셔서 감사합니다 </h2>
+        <h2>이용해 주셔서 감사합니다</h2>
         </section>
     );
 }
