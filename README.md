@@ -5,19 +5,47 @@
 ## 1. 이벤트 핸들러 함수 전달
 - 함수는 호출하는 것이 아니라 전달하는 것
 - 함수의 이름만 ```prop```의 형태로 전달
-  <br> → ```<button onClick = {handleClick}>```
-- 호출한다는 것 ⇒ 함수의 이름에 소괄호 ()를 함께 사용함      
+  <br> (예) ```<button onClick = {handleClick}>```
+- 호출한다는 것 ⇒ 함수의 이름에 소괄호를 함께 사용함      
 - 핸들러 함수 이름만 prop로 ```onClick``` 이벤트에 전달
 - 렌더링 과정 중 클릭이 없어도 함수를 실행할 수 있음
 - 이벤트 핸들러를 인라인으로 정의하고 싶다면 익명 함수를 사용함
 - React에서는 Button을 컴포넌트처럼 처리하면서 ```props```를 넘김
-  - Button 2가지 이상을 수행해야 한다면 조건문을 사용하거나 필요한 만큼 컴포넌트를 사용할 수 있음
+  - Button 2가지 이상을 수행해야 한다면 조건문을 사용하거나 <br>
+    필요한 만큼 컴포넌트를 사용 O
 - Button 컴포넌트 만들기
   - 버튼의 출력만 담당
   - 이벤트 핸들러 = 별도의 파일에 모듈의 형태로 모아서 관리
   - 부모 컴포넌트에서 호출할 때 이벤트 핸들러를 함께 전달함
  
 ---
+
+### ▶ 관련 코드
+```jsx
+
+// Toolbar.jsx
+
+import {handleClick} from "./handle.jsx"
+import style from "./ButtonCom.module.css"
+import Button from "./ButtonCom.jsx";
+
+export default function Toolbar() {
+    return (
+        <>
+        <ButtonCom message="버튼 1 클릭" handle = {handleClick} className = {style.myButton}>
+          버튼 1
+        </ButtonCom>
+
+        <ButtonCom message="버튼 2 클릭" handle = {handleClick} className = {style.myButton}>
+          버튼 2
+        </ButtonCom>
+        </>
+    )
+}
+
+```
+---
+
 
 ## 04월 29일 (9주차)
 
@@ -40,9 +68,9 @@
 ---
 
 ## 1-3. 인라인 스타일
-- 한계: 유지 보수의 어려움이 있음
-- 특징: 조건부 스타일에서만 (제한적으로) 사용함
-- 속성: ```camelCase``` 사용
+- 한계: 유지 보수의 어려움
+- 특징: 조건부 스타일에서만 (제한적으로) 사용
+- 속성: ```camelCase``` 사용함
 
 ---
 
@@ -53,7 +81,7 @@
   - 관리와 유지보수 용이
   - ```prop```를 기반으로 동적(조건부) 스타일 적용에 편리
   - 클래스명을 자동으로 생성하여 충돌 방지
-  - provider 컴포넌트 전달
+  - provider 컴포넌트 전달함
 
 - 단점: 학습 곡선이 존재, 런타임 속도가 느려짐 등
 
@@ -61,7 +89,7 @@
 
 ## 1-5. CSS 프레임워크
 - 종류: Tailwind CSS (클래스), Bootstrap (컴포넌트), bulma …
-- Tailwind CSS: 클래스를 조합하여 스타일을 적용함
+- ```Tailwind CSS```: 클래스를 조합하여 스타일을 적용함
 - 특징: 빠른 개발과 일관성을 유지할 수 있음
 - 한계: 클래스의 선언이 길어지기 때문에 문서의 가독성이 떨어짐
 
@@ -138,7 +166,6 @@ button {
 ## 2. 이벤트와 상호 작용
 - 정의: 사용자의 입력에 반응해서 업데이트가 되는 요소
 
----
 
 ## 2-1. 이벤트 응답
 - JSX에 이벤트 핸들러 추가
@@ -187,6 +214,7 @@ button {
 
 ### ▶ 관련 코드
 ```jsx
+
 // HerosData.jsx
 
 export const heroes = [
@@ -335,7 +363,7 @@ export default function TeaSet() {
 ## 4월 08일 (6주차)
 
 ## 1. 조건부 렌더링
-조건에 따라 다른 항목을 표시하는 것
+- 정의: 조건에 따라 다른 항목을 표시하는 것
 
 ---
 
