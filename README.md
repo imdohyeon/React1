@@ -9,10 +9,10 @@
 ## 1-1. 로컬 변수 컴포넌트 상태 저장
   - 캐러셀 구현
     - 캐러셀에서 사용할 이미지 모듈을 만들어야 함
-    - 객체에는 name, artist, description, url, alt 등의 key를 추가함
+    - 객체에는 name, artist, description, url, alt 등의 ```key```를 추가함
     - 이미지를 호출하려면 각각의 이미지를 ```import``` 해야 함
       - 이미지가 많을 경우 디렉토리 안에 index 파일을 만들고 컴포넌트에 가독성을 높일 수 있음
-      - 파일 이름을 반드시 index로 해야 하는 것은 아니지만 추가로 파일 이름까지 사용하지 않아도 됨
+      - 파일 이름을 반드시 ```index```로 해야 하는 것은 아니지만 추가로 파일 이름까지 사용하지 않아도 됨
       - 로컬 변수명을 모두 ```export``` 해도 되지만 하나의 객체로 묶으면 사용하기에 편함
 ---
 
@@ -23,7 +23,7 @@
 - ```<source>, <track>```을 포함하여 대체 텍스트 등을 사용해야 하는 경우에는 ```<video> ... </video>```의 형태로 사용함 
 
 
-### 관련 코드
+### ✅ 관련 코드
 
 ```jsx
 
@@ -75,17 +75,17 @@ export default function Toolbar() {
 ```
 
 ## 2. 이벤트의 전파
-- 이벤트 오브젝트를 유일한 매개변수로 사용
-- 이벤트 오브젝트를 의미하는 ```event```를 ```e```로 줄여서 호출
-- 정보를 읽어 들이는데 사용
-- 컴포넌트를 ```<button />```의 형태가 아닌 ```<button> ... </button>```의 형태로 사용함
+- 이벤트 오브젝트를 유일한 매개변수로 사용함
+- 이벤트 오브젝트를 의미하는 ```event```를 ```e```로 줄여서 호출함
+- 정보를 읽어 들이는데 사용함
+- 컴포넌트를 ```<button />```의 형태가 아닌 ```<button> ... </button>```의 형태로 사용
 
 ## 2-1.  e.stopPropagation, e.preventDefault 특징
    
 - e.stopPropagation() : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
 - e.preventDefault() : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
 
-### 관련 코드
+### ✅ 관련 코드
 
 ```jsx
 
@@ -184,7 +184,7 @@ export default function Signup2() {
 - 모듈의 이름은 cmalCase를 쓰고 컴포넌트는 카스널케이스로 사용함
 ---
 
-### ▶ 관련 코드
+### ✅ 관련 코드
 ```jsx
 
 // Toolbar.jsx
@@ -291,7 +291,7 @@ export default function Toolbar() {
 - 컴포넌트와 같은 디렉토리에 저장하여 관리 → 일반적으로 사용
 
 ---
-### ▶ 관련 코드
+### ✅ 관련 코드
 
 ```jsx
 // ButtonCom.jsx
@@ -376,7 +376,7 @@ button {
 
 ---
 
-### ▶ 관련 코드
+### ✅ 관련 코드
 ```jsx
 
 // HerosData.jsx
@@ -424,7 +424,7 @@ export default function MovieHeroes() {
   - 같은 입력이 주어졌다면 같은 결과를 반환함
 
 ---
-### ▶ 관련 코드
+### ✅ 관련 코드
 ```jsx
 // OrderUp.jsx
 export default function OrderUp ({order}) {
@@ -463,7 +463,7 @@ export default function Kiosk() {
 - 렌더링 하는 동안에 생성된 변수와 객체를 변경하는 것은 문제가 되지 않음
 
 ---
-### ▶ 관련 코드
+### ✅ 관련 코드
 ```jsx
 // TeaSet.tsx
 
@@ -543,7 +543,7 @@ export default function TeaSet() {
 
 ---
 
-### ▶ 관련 코드
+### ✅ 관련 코드
 
 ```jsx
 
