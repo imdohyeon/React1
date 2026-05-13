@@ -1,5 +1,169 @@
 # 202230120 왕도현
 
+## 05월 20일 (12주차)
+
+## 1. State와 useState
+- 컴포넌트의 기억 장소 (메모리)
+- 컴포넌트: 현재 입력 값, 현재 이미지, 장바구니의 상태와 긑은 것을 기억하는 것 
+
+## 1-1. 로컬 변수 컴포넌트 상태 저장
+  - 캐러셀 구현
+    - 캐러셀에서 사용할 이미지 모듈을 만들어야 함
+    - 객체에는 name, artist, description, url, alt 등의 key를 추가함
+    - 이미지를 호출하려면 각각의 이미지를 ```import``` 해야 함
+      - 이미지가 많을 경우 디렉토리 안에 index 파일을 만들고 컴포넌트에 가독성을 높일 수 있음
+      - 파일 이름을 반드시 index로 해야 하는 것은 아니지만 추가로 파일 이름까지 사용하지 않아도 됨
+      - 로컬 변수명을 모두 ```export``` 해도 되지만 하나의 객체로 묶으면 사용하기에 편함
+---
+
+## 05월 13일 (11주차)
+
+## 1. video 태그
+- ```<video />``` 형태의 싱글 태그로 사용
+- ```<source>, <track>```을 포함하여 대체 텍스트 등을 사용해야 하는 경우에는 ```<video> ... </video>```의 형태로 사용함 
+
+
+### 관련 코드
+
+```jsx
+
+// handle.jsx
+
+export const handleClick = (message) => {
+    alert(message);
+}
+
+export function handlePlay(message) {
+    const videoSource = document.getElementById(message);
+    if (videoSource) videoSource.play();
+}
+
+export function handleStop(message) {
+    const videoSource = document.getElementById(message);
+    if (videoSource) videoSource.pause();
+}
+
+```
+
+```jsx
+// Toolbar.jsx
+
+import ButtonCom from "./ButtonCom.jsx";
+import {handlePlay, handleStop} from "./handle.jsx";
+import sampleVideo from "/React1/Project/src/assets/tiny.mp4";
+
+export default function Toolbar() {
+    return (
+        <>
+            <nav>
+                <ButtonCom message="videoPlayer" handle={handlePlay}>
+                    Play
+                </ButtonCom>
+                &nbsp;
+                <ButtonCom message="videoPlayer" handle={handleStop}>
+                    Stop
+                </ButtonCom>
+            </nav>
+            <br />
+            <section>
+                <video id="videoPlayer" src={sampleVideo} width="350" />
+            </section>
+        </>
+    );
+}
+
+```
+
+## 2. 이벤트의 전파
+- 이벤트 오브젝트를 유일한 매개변수로 사용
+- 이벤트 오브젝트를 의미하는 ```event```를 ```e```로 줄여서 호출
+- 정보를 읽어 들이는데 사용
+- 컴포넌트를 ```<button />```의 형태가 아닌 ```<button> ... </button>```의 형태로 사용함
+
+## 2-1.  e.stopPropagation, e.preventDefault 특징
+   
+- e.stopPropagation() : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
+- e.preventDefault() : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
+
+### 관련 코드
+
+```jsx
+
+// Bubble.jsx
+// e.stopPropagation() 적용
+
+import style from "./Bubble.module.css";
+
+function Button({onClick, children}) {
+    return (
+        <button className={style.button} onClick={e => {
+            e.stopPropagation();
+            onClick();
+        }}>
+            {children}
+        </button>
+    );
+}
+
+
+
+
+export default function Bubble() {
+    return (
+        <>
+        <h1 className={style.title}>Bubble</h1>
+        <nav className={style.navBar} onClick={() => alert("네비게이션 바 클릭!")}> 
+
+            <Button onClick={() => alert("버튼 1 클릭!")}>
+                버튼1
+            </Button>
+
+            <Button onClick={() => alert("버튼 2 클릭!")}>
+                버튼2
+            </Button>
+        </nav>
+        </>
+    );
+}
+
+```
+
+```.jsx
+
+// e.preventDefault() 적용
+// Signup1.jsx
+
+export default function Signup1() {
+    return (
+        <form onSubmit={() => alert("Submitting!")}>
+            <input />
+            <button>Send1</button>
+        </form>
+    )
+}
+
+```
+
+```.jsx
+
+// e.preventDefault() 적용
+// Signup2.jsx
+
+export default function Signup2() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert("Submitting!");
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input />
+      <button type="submit">Send2</button>
+    </form>
+  );
+}
+```
+
 ## 05월 06일 (10주차)
 
 ## 1. 이벤트 핸들러 함수 전달
@@ -17,7 +181,7 @@
   - 버튼의 출력만 담당
   - 이벤트 핸들러 = 별도의 파일에 모듈의 형태로 모아서 관리
   - 부모 컴포넌트에서 호출할 때 이벤트 핸들러를 함께 전달함
- 
+- 모듈의 이름은 cmalCase를 쓰고 컴포넌트는 카스널케이스로 사용함
 ---
 
 ### ▶ 관련 코드
