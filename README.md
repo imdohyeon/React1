@@ -46,6 +46,7 @@ export function handleStop(message) {
 ```
 
 ```jsx
+
 // Toolbar.jsx
 
 import ButtonCom from "./ButtonCom.jsx";
@@ -60,13 +61,13 @@ export default function Toolbar() {
                     Play
                 </ButtonCom>
                 &nbsp;
-                <ButtonCom message="videoPlayer" handle={handleStop}>
+                <ButtonCom message="videoPlayer" handle = {handleStop}>
                     Stop
                 </ButtonCom>
             </nav>
             <br />
             <section>
-                <video id="videoPlayer" src={sampleVideo} width="350" />
+                <video id="videoPlayer" src = {sampleVideo} width = "350" />
             </section>
         </>
     );
@@ -80,10 +81,10 @@ export default function Toolbar() {
 - 정보를 읽어 들이는데 사용함
 - 컴포넌트를 ```<button />```의 형태가 아닌 ```<button> ... </button>```의 형태로 사용
 
-## 2-1.  e.stopPropagation, e.preventDefault 특징
+## 2-1.  e.stopPropagation, e.preventDefault 의 특징
    
-- e.stopPropagation() : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
-- e.preventDefault() : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
+- ```e.stopPropagation()``` : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
+- ```e.preventDefault()``` : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
 
 ### ✅ 관련 코드
 
@@ -96,7 +97,7 @@ import style from "./Bubble.module.css";
 
 function Button({onClick, children}) {
     return (
-        <button className={style.button} onClick={e => {
+        <button className = {style.button} onClick = {e => {
             e.stopPropagation();
             onClick();
         }}>
@@ -135,7 +136,7 @@ export default function Bubble() {
 
 export default function Signup1() {
     return (
-        <form onSubmit={() => alert("Submitting!")}>
+        <form onSubmit = {() => alert("Submitting!")}>
             <input />
             <button>Send1</button>
         </form>
@@ -181,7 +182,7 @@ export default function Signup2() {
   - 버튼의 출력만 담당
   - 이벤트 핸들러 = 별도의 파일에 모듈의 형태로 모아서 관리
   - 부모 컴포넌트에서 호출할 때 이벤트 핸들러를 함께 전달함
-- 모듈의 이름은 cmalCase를 쓰고 컴포넌트는 카스널케이스로 사용함
+- 모듈의 이름은 ```cmalCase```를 쓰고 컴포넌트는 ```PascalCase```로 사용함
 ---
 
 ### ✅ 관련 코드
@@ -282,7 +283,7 @@ export default function Toolbar() {
 - Import의 변수명: ```style```을 사용함
 - JSX에서는 class 키워드 대신 ```className```을 사용함
 - class 이름은 객체를 사용할 때처럼 ```[변수명].[클래스명]```의 형태로 작성함
-- class 이름 전체를 ```중괄호 {}```로 감쌈
+- class 이름 전체를 ```중괄호```로 감쌈
 
 ---
 
@@ -294,6 +295,7 @@ export default function Toolbar() {
 ### ✅ 관련 코드
 
 ```jsx
+
 // ButtonCom.jsx
 
 import style from "./ButtonCom.module.css"
@@ -312,6 +314,9 @@ export default function ButtonCom() {
 
 
 ```css
+
+// ButtonCom.module.css
+
 
 .title {
     color: blue;
@@ -425,7 +430,9 @@ export default function MovieHeroes() {
 
 ---
 ### ✅ 관련 코드
+
 ```jsx
+
 // OrderUp.jsx
 export default function OrderUp ({order}) {
     return (
