@@ -131,7 +131,6 @@ export default function Bubble() {
 
 ```.jsx
 
-// e.preventDefault() 적용
 // Signup1.jsx
 
 export default function Signup1() {
