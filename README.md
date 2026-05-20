@@ -4,7 +4,7 @@
 
 ## 1. State와 useState
 - 컴포넌트의 기억 장소 (메모리)
-    - 컴포넌트 : 현재 입력 값, 현재 이미지, 장바구니의 상태와 긑은 것을 기억하는 것 
+    - 컴포넌트 : 현재 입력 값, 현재 이미지, 장바구니의 상태와 같은 것을 기억하는 것 
 
 ## 1-1. 로컬 변수 컴포넌트 상태 저장
   - 캐러셀 구현
@@ -81,7 +81,7 @@ export default function Toolbar() {
 - 정보를 읽어 들이는데 사용함
 - 컴포넌트를 ```<button />```의 형태가 아닌 ```<button> ... </button>```의 형태로 사용
 
-## 2-1.  e.stopPropagation, e.preventDefault 의 특징
+## 2-1.  e.stopPropagation, e.preventDefault
    
 - ```e.stopPropagation()``` : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
 - ```e.preventDefault()``` : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
