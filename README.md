@@ -15,6 +15,7 @@
       - 파일 이름을 반드시 ```index```로 해야 하는 것은 아니지만 추가로 파일 이름까지 사용하지 않아도 됨
       - 로컬 변수명을 모두 ```export``` 해도 되지만 하나의 객체로 묶으면 사용하기에 편함
 
+---
 
 ### ✅ 관련 코드
 
@@ -688,7 +689,7 @@ export default function TeaSet() {
 ```
 
 
-## 4월 08일 (6주차)
+## 04월 08일 (6주차)
 
 ## 1. 조건부 렌더링
 - 정의: 조건에 따라 다른 항목을 표시하는 것
@@ -733,6 +734,8 @@ export default function PackingList() {
   );
 }
 
+```
+```jsx
 
 // 자식 컴포넌트 (Items.tsx)
 export function Items({ name, isPacked }) {
@@ -749,7 +752,9 @@ export function Items({ name, isPacked }) {
   );
 }
 
+```
 
+```jsx
 // 부모 컴포넌트 (PackingList.tsx)
 export default function PackingList() {
   return (
@@ -763,4 +768,5 @@ export default function PackingList() {
     </section>
   );
 }
+
 ```
