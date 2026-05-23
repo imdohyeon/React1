@@ -64,8 +64,7 @@ export const galleryImages = [
     description: "Placeholder image for slide 5",
     url: slide.slider2,
     alt: "slide 5",
-    },
-
+    }
 ]
 
 ```
@@ -524,6 +523,8 @@ button {
 - 함수가 아주 짧을 때만 예외적으로 사용함
 - 가독성이 떨어지고 재사용 및 모듈화가 되지 않음
 
+---
+
 ## 04월 15일 (7주차)
 
 ## 1. 리스트 렌더링
@@ -638,6 +639,7 @@ export default function Kiosk() {
 - 렌더링 하는 동안에 생성된 변수와 객체를 변경하는 것은 문제가 되지 않음
 
 ### ✅ 관련 코드
+
 ```jsx
 // TeaSet.tsx
 
