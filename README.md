@@ -57,6 +57,15 @@ export const galleryImages = [
     url: slide.slider1,
     alt: "slide 4",
     },
+
+    {
+    name: "Slide 5",
+    artist: "Artist 4",
+    description: "Placeholder image for slide 5",
+    url: slide.slider2,
+    alt: "slide 5",
+    },
+
 ]
 
 ```
