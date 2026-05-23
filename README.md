@@ -14,7 +14,180 @@
       - 이미지가 많을 경우 디렉토리 안에 index 파일을 만들고 컴포넌트에 가독성을 높일 수 있음
       - 파일 이름을 반드시 ```index```로 해야 하는 것은 아니지만 추가로 파일 이름까지 사용하지 않아도 됨
       - 로컬 변수명을 모두 ```export``` 해도 되지만 하나의 객체로 묶으면 사용하기에 편함
----
+
+
+### ✅ 관련 코드
+
+```jsx
+
+// imgData.jsx
+
+import {slide} from "./index";
+
+export const galleryImages = [
+    {
+    name: "Slide 1",
+    artist: "Artist 1",
+    description: "Placeholder image for slide 1",
+    url: "https://placehold.co/600x400?text=slide1",
+    alt: "slide 1",
+    },
+
+    {
+    name: "Slide 2",
+    artist: "Artist 2",
+    description: "Placeholder image for slide 2",
+    url: "https://placehold.co/600x400?text=slide2",
+    alt: "slide 2",
+    },
+
+    {
+    name: "Slide 3",
+    artist: "Artist 3",
+    description: "Placeholder image for slide 3",
+    url: "https://placehold.co/600x400?text=slide3",
+    alt: "slide 3",
+    },
+
+    {
+    name: "Slide 4",
+    artist: "Artist 4",
+    description: "Placeholder image for slide 4",
+    url: slide.slider1,
+    alt: "slide 4",
+    },
+]
+
+```
+
+```jsx
+
+// Carousel.module.css
+
+.carouselContainer {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 24px;
+  border-radius: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #3B82F6; 
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.button:hover {
+  background-color: #2563EB;
+}
+
+.button:active {
+  transform: scale(0.95);
+}
+
+.title {
+  font-size: 1.5rem;
+  color: #333333;
+  margin: 10px 0;
+}
+
+.title i {
+  color: #3B82F6;
+}
+
+.counter {
+  font-size: 0.9rem;
+  color: #888888;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.description {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.6;
+}
+
+```
+
+```jsx
+
+// Carousel.jsx
+
+import { useState } from "react";
+import { galleryImages } from "./imgData";
+import styles from "./Carousel.module.css"; 
+
+export default function Carousel() {
+    const [index, setIndex] = useState(0);
+
+    function handleNext() {
+        if (index === galleryImages.length - 1) {
+            setIndex(0);
+        } else {
+            setIndex(index + 1);
+        }
+    }
+
+    function handlePrevious() {
+        if (index === 0) {
+            setIndex(galleryImages.length - 1); 
+        } else {
+            setIndex(index - 1);
+        }
+    }
+
+    let slide = galleryImages[index];
+    
+    return (
+        <div className={styles.carouselContainer}> 
+            
+            <div className={styles.buttonGroup}>
+                <button className={styles.button} onClick={handlePrevious}>Previous</button>
+                <button className={styles.button} onClick={handleNext}>Next</button>
+            </div>
+            
+            <h2 className={styles.title}>
+                <i>{slide.name}</i> by {slide.artist}
+            </h2>
+
+            <h3 className={styles.counter}>
+                ({index + 1} of {galleryImages.length})
+            </h3>        
+
+            <img className={styles.image} src={slide.url} alt={slide.alt} />
+            <p className={styles.description}>{slide.description}</p>
+        </div>
+    );
+}
+
+```
 
 ## 05월 13일 (11주차)
 
@@ -85,6 +258,8 @@ export default function Toolbar() {
    
 - ```e.stopPropagation()``` : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
 - ```e.preventDefault()``` : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
+
+---
 
 ### ✅ 관련 코드
 
@@ -182,6 +357,7 @@ export default function Signup2() {
   - 이벤트 핸들러 = 별도의 파일에 모듈의 형태로 모아서 관리
   - 부모 컴포넌트에서 호출할 때 이벤트 핸들러를 함께 전달함
 - 모듈의 이름은 ```cmalCase```를 쓰고 컴포넌트는 ```PascalCase```로 사용함
+
 ---
 
 ### ✅ 관련 코드
@@ -209,8 +385,6 @@ export default function Toolbar() {
 }
 
 ```
----
-
 
 ## 04월 29일 (9주차)
 
@@ -220,7 +394,6 @@ export default function Toolbar() {
 - 종류: 일반 CSS, 인라인 스타일, CSS-in-JS, CSS 프레임워크, CSS Module
 - React에서 권장하는 방법: ```CSS Module```
 
----
 
 ## 1-2. 일반 CSS
 - 특징
@@ -230,14 +403,11 @@ export default function Toolbar() {
   - 프로젝트에 빠르게 적용할 수 있음
   - 컴포넌트 단위로 관리하기 어렵고, 전역 스코프(global)의 클래스 이름과 충돌 가능성이 있으므로 주의해야 함
 
----
 
 ## 1-3. 인라인 스타일
 - 한계: 유지 보수의 어려움
 - 특징: 조건부 스타일에서만 (제한적으로) 사용
 - 속성: ```camelCase``` 사용함
-
----
 
 ## 1-4. CSS-in-JS
 - 정의: 자바스크립트 코드 내에서 직접 작성하여 컴포넌트 단위로 스타일을 관리함
@@ -250,7 +420,6 @@ export default function Toolbar() {
 
 - 단점: 학습 곡선이 존재, 런타임 속도가 느려짐 등
 
----
 
 ## 1-5. CSS 프레임워크
 - 종류: Tailwind CSS (클래스), Bootstrap (컴포넌트), bulma …
@@ -258,7 +427,6 @@ export default function Toolbar() {
 - 특징: 빠른 개발과 일관성을 유지할 수 있음
 - 한계: 클래스의 선언이 길어지기 때문에 문서의 가독성이 떨어짐
 
----
 
 ## 1-6. CSS Module
 - 특징: 클래스명을 ```_[클래스 이름]-[해쉬값]```의 형태로 자동 변환함
@@ -267,7 +435,6 @@ export default function Toolbar() {
 - 컴포넌트 단위로 스타일링 및 재사용 유리
 - 빌드 시 고유한 이름으로 변경되기 때문에 충돌의 위험이 없음 (* css: 전역으로 선언, 다른 컴포넌트와 충돌의 위험 있음)
 
----
 
 ## (1) 규칙
 - 파일 이름: ```[컴포넌트 이름].module.css```
@@ -277,7 +444,6 @@ export default function Toolbar() {
 - ```Tag``` 선택자는 CSS Module 빌드 시에 고유한 이름을 할당 받지 않고 전역으로 사용함
 - class 선택자: ```camalCase```
   
----
 
 ## (2) 클래스 적용 방법
 - Import의 변수명: ```style```을 사용함
@@ -285,13 +451,13 @@ export default function Toolbar() {
 - class 이름은 객체를 사용할 때처럼 ```[변수명].[클래스명]```의 형태로 작성함
 - class 이름 전체를 ```중괄호```로 감쌈
 
----
 
 ## (3) 관리 방법 
 - 컴포넌트 단위로 ```css```를 작성하여 재사용이 가능함
 - 컴포넌트와 같은 디렉토리에 저장하여 관리 → 일반적으로 사용
 
 ---
+
 ### ✅ 관련 코드
 
 ```jsx
@@ -342,14 +508,11 @@ button {
 - ```<button>```과 같은 내장 컴포넌트는 ```onClick```과 같은 내장 브라우저 이벤트를 지원함
 - 사용자 정의 컴포넌트의 경우, 핸들러 속성에 원하는 애플리케이션 이름을 지정할 수 있음
 
----
 
 ## 2-2. 이벤트 핸들러 인라인 스타일 정의
 - 동일한 결과를 보여줌
 - 함수가 아주 짧을 때만 예외적으로 사용함
 - 가독성이 떨어지고 재사용 및 모듈화가 되지 않음
-
----
 
 ## 04월 15일 (7주차)
 
@@ -361,14 +524,9 @@ button {
   - `filter, map()` 함수를 사용하고 기능에 맞게 렌더링을 할 수 있음
   - 목록에 있는 데이터를 댓글 목록과 이미지 등의 인터페이스처럼 객체를 표시하고 데이터를 자바스크립트 배열에 저장함
 
----
-
-
 ## 1-1. 화살표 함수
 - 묵시적으로 `⇒` 뒤에 있는 식을 반환하기 때문에 `return`이 필요하지 않음
 - `⇒` 뒤에 중괄호가 오는 경우에는 `return`을 명시적으로 작성해야 함
-
----
 
 ## 1-2. key prop
 
@@ -415,6 +573,7 @@ export default function MovieHeroes() {
         </section>
     );
 }
+
 ```
 
 ## 2. 순수 함수
@@ -463,13 +622,11 @@ export default function Kiosk() {
 - 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
 - 같은 입력이 주어졌다면 같은 결과값을 변환함
 
----
 ## 2-2. 지역 변경
 - 외부에 있는 기존 변수를 렌더링 중에 변경함 (의도하지 않은 사이드 이펙트)
 - 함수 스코프 외부의 변수나 호출 전에 생성된 객체를 변경하지 않음
 - 렌더링 하는 동안에 생성된 변수와 객체를 변경하는 것은 문제가 되지 않음
 
----
 ### ✅ 관련 코드
 ```jsx
 // TeaSet.tsx
@@ -536,8 +693,6 @@ export default function TeaSet() {
 ## 1. 조건부 렌더링
 - 정의: 조건에 따라 다른 항목을 표시하는 것
 
----
-
 ## 1-1️. 삼항 연산자
 
 - **기본 문법:** `{isPacked ? true : false}`
@@ -546,7 +701,6 @@ export default function TeaSet() {
 - `isPacked = {0}`일 경우에는 자바스크립트에서 0이 거짓으로 나오지만 반환값 자체가 0이 되므로 화면에 0이 출력됨
 - `Items` 컴포넌트에서 name과 isPacked를 `props`로 받음
 - 두 번째 자식 컴포넌트에서 isPacked가 true라면 `del` 태그를 통해 텍스트에 취소선을 나타냄
-
 
 ---
 
