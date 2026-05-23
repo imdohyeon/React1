@@ -61,7 +61,7 @@ export const galleryImages = [
 
 ```
 
-```jsx
+```css
 
 // Carousel.module.css
 
@@ -717,8 +717,11 @@ export function Items({ name, isPacked }) {
     </li>
   );
 }
+```
+```jsx
 
 // 부모 컴포넌트 (PackingList.tsx)
+
 export default function PackingList() {
   return (
     <>
@@ -735,9 +738,11 @@ export default function PackingList() {
 }
 
 ```
+
 ```jsx
 
 // 자식 컴포넌트 (Items.tsx)
+
 export function Items({ name, isPacked }) {
   let itemContent = name;
   
@@ -755,7 +760,9 @@ export function Items({ name, isPacked }) {
 ```
 
 ```jsx
+
 // 부모 컴포넌트 (PackingList.tsx)
+
 export default function PackingList() {
   return (
     <section>
