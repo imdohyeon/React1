@@ -15,7 +15,6 @@
       - 파일 이름을 반드시 ```index```로 해야 하는 것은 아니지만 추가로 파일 이름까지 사용하지 않아도 됨
       - 로컬 변수명을 모두 ```export``` 해도 되지만 하나의 객체로 묶으면 사용하기에 편함
 
----
 
 ### ✅ 관련 코드
 
@@ -263,12 +262,11 @@ export default function Toolbar() {
 - 정보를 읽어 들이는데 사용함
 - 컴포넌트를 ```<button />```의 형태가 아닌 ```<button> ... </button>```의 형태로 사용
 
-## 2-1.  e.stopPropagation, e.preventDefault
+## 2-1.  e.stopPropagation, e.preventDefault 의 특징
    
 - ```e.stopPropagation()``` : 이벤트 핸들러가 상위 태그에서 실행되지 않도록 멈추는 기능
 - ```e.preventDefault()``` : 브라우저 기본 동작을 갖고 있는 일부 이벤트가 해당 기본 동작을 실행하지 않도록 방지하는 기능
 
----
 
 ### ✅ 관련 코드
 
@@ -367,7 +365,6 @@ export default function Signup2() {
   - 부모 컴포넌트에서 호출할 때 이벤트 핸들러를 함께 전달함
 - 모듈의 이름은 ```cmalCase```를 쓰고 컴포넌트는 ```PascalCase```로 사용함
 
----
 
 ### ✅ 관련 코드
 
@@ -465,7 +462,6 @@ export default function Toolbar() {
 - 컴포넌트 단위로 ```css```를 작성하여 재사용이 가능함
 - 컴포넌트와 같은 디렉토리에 저장하여 관리 → 일반적으로 사용
 
----
 
 ### ✅ 관련 코드
 
@@ -491,7 +487,6 @@ export default function ButtonCom() {
 ```css
 
 // ButtonCom.module.css
-
 
 .title {
     color: blue;
@@ -548,9 +543,9 @@ button {
   - 즉석해서 생성하는 것이 아니고 배열 안에 포함해야 함
   - 프래그먼트 구문으로 전달할 수 없음 (`div` 태그로 그룹화 / `<Fragment>` 컴포넌트를 사용해야 함)
 
----
 
 ### ✅ 관련 코드
+
 ```jsx
 
 // HerosData.jsx
@@ -562,8 +557,12 @@ export const heroes = [
 {id: 3, casting: '슈퍼맨', name: '클라크 켄트', power: 1},
 {id: 4, casting: '헐크', name: '로버트 브루스 배너', power: 2}
 ];
+```
 
-// MovieHeros.jsx
+
+```jsx
+
+// MovieHero.jsx
 
 import {heroes} from "./HerosData";
 
@@ -598,7 +597,7 @@ export default function MovieHeroes() {
   - 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
   - 같은 입력이 주어졌다면 같은 결과를 반환함
 
----
+
 ### ✅ 관련 코드
 
 ```jsx
@@ -611,8 +610,12 @@ export default function OrderUp ({order}) {
         </section>
     )
 }
+```
+
+```jsx
 
 // Kiosk.jsx
+
 import OrderUp from "./OrderUp";
 export default function Kiosk() {
     return (
@@ -629,6 +632,7 @@ export default function Kiosk() {
 }
 
 ```
+
 ## 2-1. 특징
 - 자신의 일만 집중하고 함수가 호출되기 전에 존재했던 객체나 변수를 변경하지 않음
 - 같은 입력이 주어졌다면 같은 결과값을 변환함
@@ -641,6 +645,7 @@ export default function Kiosk() {
 ### ✅ 관련 코드
 
 ```jsx
+
 // TeaSet.tsx
 
 /* 의도하지 않은 사이드 이펙트 */
@@ -661,6 +666,9 @@ function Cup() {
         </>
      );
  }
+```
+
+```jsx
 
 /* 올바른 예시 (1) */
 
@@ -677,6 +685,10 @@ function Cup() {
          </>
       );
   }
+
+```
+
+```jsx
 
 /* 올바른 예시 (2) */
 
