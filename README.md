@@ -556,7 +556,9 @@ export const heroes = [
 {id: 2, casting: '배트맨', name: '브루스 웨인', power: 3},
 {id: 3, casting: '슈퍼맨', name: '클라크 켄트', power: 1},
 {id: 4, casting: '헐크', name: '로버트 브루스 배너', power: 2}
+
 ];
+
 ```
 
 
