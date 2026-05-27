@@ -1,5 +1,164 @@
 # 202230120 왕도현
 
+## 05월 27일 (13주차)
+
+## 0. State를 강조하는 이유
+- 렌더링 모델 대부분을 사용
+- `Hook`을 이용해서 문제 해결하기 위한 도구를 사용함
+- '상태 기반 사고'를 중요하게 봄
+
+
+## 1. State Hook의 동작 원리
+- Hook 
+    - `use`로 시작하는 함수
+    - 다양한 기능을 연결할 수 있음
+    - 일반 모듈과 마찬가지로 `import`를 해서 사용함
+    - 최상위 수준 또는 사용자 정의에서만 호출 가능
+    - 조건문이나 반복문 또는 기타 중첩 함수 내부에서는 호출할 수 없음
+    - 함수의 형식을 취하고 있지만 컴포넌트가 어떤 기능을 필요로 하는지 요구사항을 알려줌
+
+## 1-1. 기본
+- 문법: `useState(0)`
+- 호출한다는 것: `React`에 이 컴포넌트가 무언가를 기억되기를 원함
+- 규칙: `setter` 함수의 이름은 변수 이름 앞에 `set`을 붙여 지정함
+    - 원하는 이름을 사용할 수 있지만 가독성을 떨어뜨리므로 엄격하게 지키는 것이 중요
+    - 변수명: `pascalCase`를 사용함
+
+
+## 1-2. 여러 개의 State 사용
+- 사용할 수 있는 state 변수의 개수에는 제한이 없고 원하는 state 변수를 가질 수 있음
+- 변수를 함께 변경해야 하는 경우가 발생하면 하나로 합치는 것이 좋음
+- 필드가 많은 폼의 경우 필드별로 사용하는 것보다 하나의 객체를 사용하는 것이 편함
+- 컴포넌트를 두 번 렌더링하면 각 컴포넌트에서 독립적으로 동작함
+    - 부모 컴포넌트도 변경할 수 없음
+    - 다른 컴포넌트에 영향을 미치지 않고 어떤 컴포넌트에서나 추가하거나 제거할 수 있음
+- State 공유: 자식 컴포넌트에서 state를 제거하고 가장 가까운 공통 부모 컴포넌트에 state를 추가함
+
+
+### ✅ 관련 코드
+
+```jsx
+
+// Carousel.jsx
+
+import { useState } from "react";
+import { galleryImages } from "./imgData";
+import styles from "./Carousel.module.css"; 
+
+export default function Carousel() {
+    const [index, setIndex] = useState(0);
+    const [more, setMore] = useState(false); 
+
+    function handleNext() {
+        setMore(false); 
+        if (index === galleryImages.length - 1) {
+            setIndex(0);
+        } else {
+            setIndex(index + 1);
+        }
+    }
+
+    function handlePrevious() {
+        setMore(false); 
+        if (index === 0) {
+            setIndex(galleryImages.length - 1); 
+        } else {
+            setIndex(index - 1);
+        }
+    }
+
+    function handleMoreClick() {
+        setMore(!more);
+    }
+
+    let slide = galleryImages[index];
+    
+    return (
+        <div className={styles.carouselContainer}> 
+            <div className={styles.buttonGroup}>
+                <button className={styles.button} onClick={handlePrevious}>Previous</button>
+                <button className={styles.button} onClick={handleNext}>Next</button>
+            </div>
+        
+            <h2 className={styles.title}>
+                <i>{slide.name}</i> by {slide.artist}
+            </h2>
+
+            <h3 className={styles.counter}>
+                ({index + 1} of {galleryImages.length})
+            </h3>
+        
+            <img className={styles.image} src={slide.url} alt={slide.alt} />
+
+            <div className={styles.detailsArea}>
+                <button className={styles.button} onClick={handleMoreClick}>
+                    {more ? "Hide description" : "Show description"}
+                </button>
+                
+                {more && <p className={styles.description}>{slide.description}</p>}
+            </div>
+        </div>
+    );
+}
+```
+
+## 2. State와 렌더링
+
+## 2-1. 렌더링 과정 3단계
+
+- 렌더링 트리거
+    - 초기 렌더링
+        - 앱을 시작할 때 사용함
+        - 대상 DOM 노드와 함께 `createRoot`를 호출하고 해당 컴포넌트로 `render` 메소드를 호출하면 작업이 완료됨
+        - id가 `root`인 DOM 노드를 createRoot 함수로 호출하고 render 메소드를 통해 `App 컴포넌트`를 호출함
+  
+    - state가 업데이트된 경우
+        - 초기 렌더링 된 후에는 set 함수를 통해 state를 업데이트해서 추가적인 렌더링을 촉발
+        - 컴포넌트의 state를 업데이트하면 자동으로 렌더링 큐에 추가하고 순서대로 렌더링
+
+```jsx
+
+// main.jsx
+
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+
+```
+- React 컴포넌트 렌더링
+
+    - 1단계 직후 컴포넌트를 호출해서 화면에 표시할 내용을 파악함
+    - 초기 렌더링에서 루트 컴포넌트를 호출함
+    - 초기 렌더링 이후 state 업데이트가 일어나면 렌더링을 촉발시킨 컴포넌트를 호출함
+    - 프로세스는 재귀적으로 발생함
+    - State의 업데이트가 발생한 컴포넌트가 다른 컴포넌트를 중첩하고 있으면 해당 컴포넌트를 렌더링
+    - 중첩되어 반환된 컴포넌트를 호출했는데 그 컴포넌트가 중첩되어 있다면 렌더링은 계속됨
+ 
+- DOM에 변경 사항을 커밋
+    - 컴포넌트를 렌더링(컴포넌트 호출)한 후 `DOM`을 수정
+    - 초기 렌더링의 경우 `appendChild() DOM API`를 사용해서 생성한 모든 `DOM 노드`를 화면에 표시
+    - 리렌더링의 경우에는 최신 렌더링의 출력과 일치하도록 DOM을 변경하기 위해 필요한 최소한의 작업을 적용함
+ 
+
+## 2-2. 스냅샷처럼 동작
+- 정의: 특정 시간대의 데이터 및 파일 시스템 상태를 기억해두는 기술
+- State의 변수는 읽고 쓸 수 있는 자바스크립트 변수처럼 보일 수 있음
+- set 함수로 업데이트해도 이미 가지고 있는 변수는 변경되지 않고 리렌더링이 촉발됨
+- set 함수의 호출이 트리거로 작용하여 렌더링이 이루어짐
+- prop, 이벤트 핸들러, 로컬 변수는 모두 렌더링 시점에 state를 사용해서 계산
+- 컴포넌트의 메모리 내부에 있는 것이 아니라 React 내부에 존재함
+- 특정 렌더링에 대한 State의 스냅샷을 제공함
+- 스냅샷을 제공받은 컴포넌트는 해당 렌더링의 state 값으로 계산된 props와 이벤트 핸들러가 포함된 UI 스냅샷을 반환함
+
+---
+
 ## 05월 20일 (12주차)
 
 ## 1. State와 useState
@@ -16,7 +175,7 @@
       - 로컬 변수명을 모두 ```export```를 해도 되지만 하나의 객체로 묶으면 사용하기에 편함
 
 
-### 👨‍💻 관련 코드
+### ✅ 관련 코드
 
 ```jsx
 
