@@ -67,6 +67,7 @@ export default function BtnClick() {
 - `배칭(batching)`: 불필요하게 많은 트리거의 발생 없이 복수의 `state` 변수를 업데이트하는 것
 
 
+
 ### ✅ 관련 코드
 
 ```jsx
@@ -78,10 +79,10 @@ export default function BtnClick() {
 
     function handleIncrease1() {
         
-        setNumber(n => n + 1); // (n => n + 1) : 업데이터 함수 
+        setNumber(n => n + 1);                 // (n => n + 1) : 업데이터 함수 
         console.log(number)
 
-        setNumber(n => n + 1);
+        setNumber(n => n + 1);                 
         console.log(number)
 
         setNumber(n => n + 1);
@@ -111,6 +112,8 @@ export default function BtnClick() {
 }
 
 ```
+- `n` : 틀을 구분하고 가독성 유리
+- 업데이터 함수의 명명 규칙은 `state` 변수의 첫 글자로 지정함
 
 
 ## 05월 27일 (13주차)
