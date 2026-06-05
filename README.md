@@ -1,5 +1,118 @@
 # 202230120 왕도현
 
+## 06월 05일 (14주차)
+
+## 1. 스냅샷처럼 동작
+- 정의: 특정 시간대의 데이터 및 파일 시스템 상태를 기억해두는 기술
+- `State`의 변수: 읽고 쓸 수 있는 자바스크립트 변수처럼 보일 수 있음
+- `set` 함수로 업데이트해도 이미 가지고 있는 변수는 변경되지 않고 리렌더링이 촉발됨
+- `set` 함수의 호출이 트리거로 작용하여 렌더링이 이루어짐
+- prop, 이벤트 핸들러, 로컬 변수는 모두 렌더링 시점에 `state`를 사용해서 계산
+- 컴포넌트의 메모리 내부에 있는 것이 아니라 React 내부에 존재함
+- 특정 렌더링에 대한 `State`의 스냅샷을 제공함
+- 스냅샷을 제공받은 컴포넌트는 해당 렌더링의 `state` 값으로 계산된 `props`와 이벤트 핸들러가 포함된 UI 스냅샷을 반환함
+
+
+### ✅ 관련 코드
+
+```jsx
+
+// BtnClick.jsx
+
+import { useState } from "react";
+
+export default function BtnClick() {
+    const [number, setNumber] = useState(0);
+
+    function handleIncrease1() {
+        setNumber(number + 1);
+        console.log(number)
+
+        setNumber(number + 1);
+        console.log(number)
+
+        setNumber(number + 1);
+        console.log(number)
+    }
+
+    function handleIncrease2() {
+        setNumber(number + 5);
+        alert(number);
+    }
+
+    function handleTimer() {
+        setNumber(number + 5);
+        setTimeout(() => {
+            alert(number);
+        }, 1000);
+    }
+
+    return (
+        <>
+        <h1>{number}</h1>
+        <button onClick={handleIncrease1}>+3</button>&nbsp;
+        <button onClick={handleIncrease2}>+5</button>&nbsp;
+        <button onClick={handleTimer}>Timer</button>&nbsp;
+        </>
+    )
+}
+
+```
+
+## 2. State 업데이트의 배치 처리
+- `set` 함수로 `state` 변수를 저장하면 새로운 렌더링이 큐에 들어감
+- 경우에 따라서는 렌더링을 `state` 변수 값에 몇 가지의 작업을 수행할 수 있음 → `배치 처리(batches, 일괄 처리)`
+- 렌더링의 `state` 값은 고정됨
+- 이벤트 핸들러의 모든 코드가 실행될 때까지 `state`를 업데이트 하지 않고 대기함
+- `배칭(batching)`: 불필요하게 많은 트리거의 발생 없이 복수의 `state` 변수를 업데이트하는 것
+
+
+### ✅ 관련 코드
+
+```jsx
+
+import { useState } from "react";
+
+export default function BtnClick() {
+    const [number, setNumber] = useState(0);
+
+    function handleIncrease1() {
+        
+        setNumber(n => n + 1); // (n => n + 1) : 업데이터 함수 
+        console.log(number)
+
+        setNumber(n => n + 1);
+        console.log(number)
+
+        setNumber(n => n + 1);
+        console.log(number)
+    }
+
+    function handleIncrease2() {
+        setNumber(number + 5);
+        alert(number);
+    }
+
+    function handleTimer() {
+        setNumber(number + 5);
+        setTimeout(() => {
+            alert(number);
+        }, 1000);
+    }
+
+    return (
+        <>
+        <h1>{number}</h1>
+        <button onClick={handleIncrease1}>+3</button>&nbsp;
+        <button onClick={handleIncrease2}>+5</button>&nbsp;
+        <button onClick={handleTimer}>Timer</button>&nbsp;
+        </>
+    )
+}
+
+```
+
+
 ## 05월 27일 (13주차)
 
 ## 0. State를 강조하는 이유
@@ -143,18 +256,6 @@ createRoot(document.getElementById('root')).render(
     - 초기 렌더링의 경우 `appendChild() DOM API`를 사용해서 생성한 모든 `DOM 노드`를 화면에 표시
     - 리렌더링의 경우에는 최신 렌더링의 출력과 일치하도록 DOM을 변경하기 위해 필요한 최소한의 작업을 적용함
  
-
-## 2-2. 스냅샷처럼 동작
-- 정의: 특정 시간대의 데이터 및 파일 시스템 상태를 기억해두는 기술
-- State의 변수는 읽고 쓸 수 있는 자바스크립트 변수처럼 보일 수 있음
-- set 함수로 업데이트해도 이미 가지고 있는 변수는 변경되지 않고 리렌더링이 촉발됨
-- set 함수의 호출이 트리거로 작용하여 렌더링이 이루어짐
-- prop, 이벤트 핸들러, 로컬 변수는 모두 렌더링 시점에 state를 사용해서 계산
-- 컴포넌트의 메모리 내부에 있는 것이 아니라 React 내부에 존재함
-- 특정 렌더링에 대한 State의 스냅샷을 제공함
-- 스냅샷을 제공받은 컴포넌트는 해당 렌더링의 state 값으로 계산된 props와 이벤트 핸들러가 포함된 UI 스냅샷을 반환함
-
----
 
 ## 05월 20일 (12주차)
 
