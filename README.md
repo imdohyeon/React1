@@ -712,14 +712,14 @@ export default function Toolbar() {
 - 내용: 일반 CSS의 작성법을 사용하고 class 선택자로 스타일을 선언함
 - ```Tag``` 선택자를 사용하는 것은 특별한 경우가 아니라면 권장하지 않음
 - ```Tag``` 선택자는 CSS Module 빌드 시에 고유한 이름을 할당 받지 않고 전역으로 사용함
-- class 선택자: ```camalCase```
+- class 선택자: `camelCase (카멜 케이스)`를 사용
   
 
 ## (2) 클래스 적용 방법
 - Import의 변수명: ```style```을 사용함
 - JSX에서는 class 키워드 대신 ```className```을 사용함
 - class 이름은 객체를 사용할 때처럼 ```[변수명].[클래스명]```의 형태로 작성함
-- class 이름 전체를 ```중괄호```로 감쌈
+- class 이름 전체를 ```중괄호 {}```로 감쌈
 
 
 ## (3) 관리 방법 
