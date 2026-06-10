@@ -615,7 +615,7 @@ export default function Signup2() {
 - 함수의 이름만 ```prop```의 형태로 전달
   <br> (예) ```<button onClick = {handleClick}>```
 - 호출한다는 것 ⇒ 함수의 이름에 소괄호를 함께 사용함      
-- 핸들러 함수 이름만 prop로 ```onClick``` 이벤트에 전달
+- 핸들러 함수 이름만 `prop`로 ```onClick``` 이벤트에 전달
 - 렌더링 과정 중 클릭이 없어도 함수를 실행할 수 있음
 - 이벤트 핸들러를 인라인으로 정의하고 싶다면 익명 함수를 사용함
 - React에서는 ```Button```을 컴포넌트처럼 처리하면서 ```props```를 넘김
@@ -680,7 +680,7 @@ export default function Toolbar() {
 - 속성: `camelCase (카멜 케이스)`를 사용함
 
 ## 1-4. CSS-in-JS
-- 정의: 자바스크립트 코드 내에서 직접 작성하여 컴포넌트 단위로 스타일을 관리함
+- **정의**: 자바스크립트 코드 내에서 직접 작성하여 컴포넌트 단위로 스타일을 관리함
 - 종류: styled-components, emotion, JSS …
 - 장점
   - 관리와 유지보수 용이
@@ -688,7 +688,7 @@ export default function Toolbar() {
   - 클래스명을 자동으로 생성하여 충돌 방지
   - provider 컴포넌트 전달함
 
-- 단점: 학습 곡선이 존재, 런타임 속도가 느려짐 등
+- 단점: 학습 곡선이 존재하고 런타임 속도가 느려짐 
 
 
 ## 1-5. CSS 프레임워크
